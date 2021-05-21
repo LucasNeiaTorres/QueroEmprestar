@@ -1,0 +1,187 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+    <h:head>
+        <title>Usuário</title>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+        <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+        <link rel="stylesheet" type="text/css" href="css/box.css"/>
+        <link href="css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="css/style.css" rel="stylesheet"/>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="css/all.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" />
+        <meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; width=device-width;"/>
+    </h:head>
+    <h:body>
+        <ui:decorate template="/template/layout.xhtml">
+            <ui:define name="content">
+                <div class="container100">
+                    <div class="wrap-login100">
+                        <h:form id="formTabela">
+                            <br/>
+                            <h4>#{usuarioControle.usuario.nomeUsuario}</h4>
+                            <p:outputLabel class="grey-text text-darken-4 center-align" style="font-size: smaller" value="#{usuarioControle.usuario.msg}" > 
+                                <img class="right" src="images/estrelinha.png" style="width: 12px; margin-left: 5px; margin-top: 1px"/></p:outputLabel>   
+                            <br/>
+                            <ui:repeat id="tabSoma"
+                                       value="#{usuarioControle.listaTotUsu}"
+                                       var="al">
+                                <p>Total de locações finalizadas: #{al.usuario.total}</p>        
+                            </ui:repeat>
+                            <br/>
+                            <br/>
+                            <div class="dividerWrap" style="width: 150%"></div>
+                            <h4 class="center-align">Localização</h4>
+                            Estado: #{usuarioControle.usuario.estado}
+                            <br/>
+                            <br/>
+                            Cidade: #{usuarioControle.usuario.cidade}
+                            <br/>
+                            <br/>
+                            Bairro: #{usuarioControle.usuario.bairro}
+                            <br/>
+                            <br/>
+                            Endereço: #{usuarioControle.usuario.endereco}
+                            <br/>
+                            <br/>
+                            Número Residência: #{usuarioControle.usuario.numeroResidencia}
+                            <br/>
+                            <br/>
+                            Complemento: #{usuarioControle.usuario.complemento}
+                            <br/>
+                            <br/>
+                            <br/>
+                            <div class="dividerWrap" style="width: 150%"></div>
+                            <div class="section">
+                                <h4 class="center-align">Objetos do usuário</h4>
+                                <div class="owl-carousel owl-theme">
+                                    <ui:repeat id="tabObj2"
+                                               value="#{usuarioControle.listaObjetoUsu}"
+                                               var="ob">
+                                        <h:commandLink action="#{objetoControle.preparaVisualizacao(ob)}">
+                                            <div class="item">
+                                                <img src="#{ob.imagem}" alt=""/>
+                                                <h4>#{ob.nome}</h4>
+                                                <p:outputLabel class="grey-text text-darken-4 center-align" style="font-size: smaller" value="#{ob.msg}" > 
+                                                    <img class="right" src="images/estrelinha.png" style="width: 12px; margin-left: 5px; margin-top: 1px"/></p:outputLabel>   
+                                            </div>
+                                        </h:commandLink>
+                                    </ui:repeat>
+                                </div>
+                            </div>
+                            <div class="navegacao">
+                                <button style="background-color: white" type="button" onclick="antes();" id="botao_anterior" class="btnBoot btn-outline-dark">
+                                    <i class="material-icons center">keyboard_arrow_left</i>
+                                </button>
+                                <button style="background-color: white" type="button" onclick="depois();" id="botao_proximo" class="btnBoot btn-outline-dark">
+                                    <i class="material-icons center">keyboard_arrow_right</i>
+                                </button>
+                            </div>
+                            <br/>
+                            <br/>
+                            <div class="dividerWrap" style="width: 150%"></div>
+                            <div class="section">
+                                <h5 style="font-size: large" class="center-align ">Opiniões sobre o usuário como locador</h5>
+                                <div class="center">
+                                    <p:outputLabel class="grey-text text-darken-4 center" style="font-size: medium" value="#{usuarioControle.usuario.msglocad}" > 
+                                        <img class="right" src="images/estrelinha.png" style="width: 15px; margin-left: 5px; margin-top: 3px"/></p:outputLabel>   
+                                </div>
+                                <br/>
+                                <ui:repeat id="tabela2"
+                                           value="#{usuarioControle.listaAvalLocad}"
+                                           var="avLocad" >
+                                    <tr>
+                                    <div class="row" style="margin-bottom: -6px; opacity: 0.8"><i class="material-icons left" style="margin-top: -3px">account_circle</i><p style="font-size: 12px; margin-left: -9px">#{avLocad.objeto.usuario.nomeUsuario}</p></div>
+                                    <p:rating value="#{avLocad.classificacaoLocador}" readonly="true"/>
+                                    </tr>
+                                    <br/>
+                                    <tr>
+                                        #{avLocad.opiniaoLocador}
+                                    </tr>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                </ui:repeat>
+                            </div>
+                            <div class="dividerWrap" style="width: 150%"></div>
+                            <div class="section">
+                                <h5 style="font-size: large" class="center-align ">Opiniões sobre o usuário como locatário</h5>
+                                <div class="center">
+                                    <p:outputLabel class="grey-text text-darken-4 center" style="font-size: medium" value="#{usuarioControle.usuario.msglocat}" > 
+                                        <img class="right" src="images/estrelinha.png" style="width: 15px; margin-left: 5px; margin-top: 3px"/></p:outputLabel>   
+                                </div>
+                                <br/>
+                                <ui:repeat id="tabela3"
+                                           value="#{usuarioControle.listaAvalLocat}"
+                                           var="avLocat" >
+                                    <tr>
+                                    <div class="row" style="margin-bottom: -6px; opacity: 0.8"><i class="material-icons left" style="margin-top: -3px">account_circle</i><p style="font-size: 12px; margin-left: -9px">#{avLocat.usuario.nomeUsuario}</p></div>
+                                    <p:rating value="#{avLocat.classificacaoLocatario}" readonly="true"/>
+                                    </tr>
+                                    <br/>
+                                    <tr>
+                                        #{avLocat.opiniaoLocatario}
+                                    </tr>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                </ui:repeat>
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
+                <br/>
+            </ui:define>
+        </ui:decorate>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous"></script>
+        <script type="text/javascript">
+                                    $(document).ready(function () {
+                                        var owl = $('.owl-carousel');
+
+                                        owl.owlCarousel({
+                                            loop: false,
+                                            margin: 200,
+                                            dots: false,
+                                            stagePadding: 0,
+                                            autoplay: false,
+                                            slideTransition: 'ease-in',
+                                            responsive: {
+                                                0: {
+                                                    items: 1
+                                                },
+                                                600: {
+                                                    items: 3
+                                                },
+                                                1000: {
+                                                    items: 5
+                                                },
+                                                1400: {
+                                                    items: 3
+                                                }
+                                            }
+                                        });
+                                    });
+                                    function antes() {
+                                        var owl = $('.owl-carousel');
+                                        owl.trigger('prev.owl');
+                                    }
+                                    function depois() {
+                                        var owl = $('.owl-carousel');
+                                        owl.trigger('next.owl');
+                                    }
+        </script>
+    </h:body>
+
+</html>
+

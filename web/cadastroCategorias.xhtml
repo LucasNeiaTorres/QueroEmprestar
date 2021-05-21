@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Cadastro Categoria</title>
+        <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all"/>
+        <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all"/>
+        <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+        <!-- Materialize CSS-->
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+        <!-- Font special for pages-->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet"/>
+
+        <!-- Vendor CSS-->
+        <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all"/>
+        <link href="vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all"/>
+
+        <!-- Main CSS-->
+        <link href="css/main.colorlib.css" rel="stylesheet" media="all"/>
+        <link href="css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="css/style.css" rel="stylesheet"/>
+    </h:head>
+
+    <h:body>
+        <ui:decorate template="/template/layout.xhtml">
+            <ui:define name="content">
+                <h:form id="formTabela">
+                    <div class="wrapper wrapper--w680">
+                        <div class="card card-5">
+                            <div class="card-heading">
+                                <h2 class="title">Cadastro de Categoria</h2>
+                            </div>
+                            <div class="divider"></div> 
+                            <div class="card-body">
+                            <br/>
+                            <div class="input-field" style="width: 70%">
+                                <i class="material-icons prefix" aria-hidden="true">apps</i>
+                                <h:inputText style="width: 80%" required="true" requiredMessage="Por favor, preencha o campo 'Descrição da Categoria'" id="cat" class="input100" value="#{categoriaControle.categoria.descricaoCategoria}">
+                                </h:inputText>
+                                <label for="cat">Descrição da Categoria</label>
+                            </div>
+                            <br/>
+                            <h:commandButton style="width: 20%" class="btn btn--radius-2 btn--blue" value="Salvar" type="submit" action="#{categoriaControle.salvar()}"/>
+                            </div>
+                        </div>
+                    </div>
+                </h:form>
+            </ui:define>
+        </ui:decorate>
+    </h:body>
+
+</html>
+

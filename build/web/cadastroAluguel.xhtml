@@ -1,0 +1,353 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head>
+        <!-- Required meta tags-->
+        <meta charset="UTF-8"/>
+        <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <meta name="description" content="Colorlib Templates"/>
+        <meta name="author" content="Colorlib"/>
+        <meta name="keywords" content="Colorlib Templates"/>
+
+        <!-- Title Page-->
+        <title>Alugar</title>
+
+        <!-- Icons font CSS-->
+        <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all"/>
+        <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all"/>
+        <!-- Materialize CSS-->
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+        <!-- Font special for pages-->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet"/>
+
+        <!-- Main CSS-->
+        <link href="css/main.colorlib.css" rel="stylesheet" media="all"/>
+        <link href="css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="css/style.css" rel="stylesheet"/>
+
+        <script>
+            function excluir() {
+                if (confirm("Confirma a exclusï¿½o?")) {
+                    return true;
+                } else
+                    return false;
+            }
+
+            /*Funcao Pai de Mascaras*/
+            function Mascara(o, f) {
+                v_obj = o;
+                v_fun = f;
+                setTimeout("execmascara()", 1);
+            }
+
+            /*Funcao que Executa os objetos*/
+            function execmascara() {
+                v_obj.value = v_fun(v_obj.value);
+            }
+
+            /*Funcao que Determina as expressoess regulares dos objetos*/
+            function leech(v) {
+                v = v.replace(/o/gi, "0");
+                v = v.replace(/i/gi, "1");
+                v = v.replace(/z/gi, "2");
+                v = v.replace(/e/gi, "3");
+                v = v.replace(/a/gi, "4");
+                v = v.replace(/s/gi, "5");
+                v = v.replace(/t/gi, "7");
+                return v;
+            }
+
+            /*Funcao que permite apenas numeros*/
+            function Integer(v) {
+                return v.replace(/\D/g, "");
+            }
+
+            /*Funcao que padroniza telefone (99) 9999-9999*/
+            function TelefoneFixo(v) {
+
+                v = v.replace(/\D/g, "");
+                v = v.replace(/^(\d\d)(\d)/g, "($1) $2");
+                v = v.replace(/(\d{4})(\d)/, "$1-$2");
+                return v;
+            }
+
+            /*Funcao que padroniza telefone (99) 9999-9999*/
+            function Telefone(v) {
+
+                v = v.replace(/\D/g, "");
+                v = v.replace(/^(\d\d)(\d)/g, "($1) $2");
+                v = v.replace(/(\d{5})(\d)/, "$1-$2");
+                return v;
+            }
+
+            /*Funcao que padroniza CPF*/
+            function Cpf(v) {
+                v = v.replace(/\D/g, "");
+                v = v.replace(/(\d{3})(\d)/, "$1.$2");
+                v = v.replace(/(\d{3})(\d)/, "$1.$2");
+
+                v = v.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+
+                return v;
+            }
+            /*Funcao que padroniza RG*/
+            function RG(v) {
+                v = v.replace(/\D/g, "");
+                v = v.replace(/(\d{2})(\d)/, "$1.$2");
+                v = v.replace(/(\d{3})(\d)/, "$1.$2");
+
+                v = v.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+
+                return v;
+            }
+
+            /*Funcao que padroniza CEP*/
+            function Cep(v) {
+                v = v.replace(/D/g, "");
+                v = v.replace(/^(\d{5})(\d)/, "$1-$2");
+                return v;
+            }
+
+            /*Funcao que padroniza CNPJ*/
+            function Cnpj(v) {
+                v = v.replace(/\D/g, "");
+                v = v.replace(/^(\d{2})(\d)/, "$1.$2");
+                v = v.replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3");
+                v = v.replace(/\.(\d{3})(\d)/, ".$1/$2");
+                v = v.replace(/(\d{4})(\d)/, "$1-$2");
+                return v;
+            }
+
+            /*Funcao que permite apenas numeros Romanos*/
+            function Romanos(v) {
+                v = v.toUpperCase();
+                v = v.replace(/[^IVXLCDM]/g, "");
+
+                while (v.replace(/^M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$/, "") != "")
+                    v = v.replace(/.$/, "");
+                return v;
+            }
+
+
+
+            /*Funcao que padroniza DATA*/
+            function Data(v) {
+                v = v.replace(/\D/g, "");
+                v = v.replace(/(\d{2})(\d)/, "$1/$2");
+                v = v.replace(/(\d{2})(\d)/, "$1/$2");
+                return v;
+            }
+
+            /*Funcao que padroniza DATA*/
+            function Hora(v) {
+                v = v.replace(/\D/g, "");
+                v = v.replace(/(\d{2})(\d)/, "$1:$2");
+                return v;
+            }
+
+            /*Funcao que padroniza valor monetario*/
+            function Valor(v) {
+                v = v.replace(/\D/g, ""); //Remove tudo o que nao e digito
+                v = v.replace(/^([0-9]{3}\.?){3}-[0-9]{2}$/, "$1.$2");
+                //v=v.replace(/(\d{3})(\d)/g,"$1,$2")
+                v = v.replace(/(\d)(\d{2})$/, "$1.$2"); //Coloca ponto antes dos 2 ultimos digitos
+                return v;
+            }
+
+            /*Funcao que padroniza Area*/
+            function Area(v) {
+                v = v.replace(/\D/g, "");
+                v = v.replace(/(\d)(\d{2})$/, "$1.$2");
+                return v;
+
+            }
+
+            var ehPlacaValida = function (placa)
+            {
+                var er = /[a-z]{3}-?\d{4}/gim;
+                er.lastIndex = 0;
+                return er.test(placa);
+            }
+
+        </script>
+    </h:head>
+
+    <h:body style="background-color: #3c1c080f">
+        <ui:decorate template="/template/layout.xhtml">
+            <ui:define name="content">
+
+                <div class="wrapper wrapper--w680">
+                    <div class="card card-5">
+                        <div class="card-heading">
+                            <h2 class="title">Alugar </h2>
+                        </div>
+                        <div class="divider"></div> 
+                        <div class="card-body">
+
+                            <h:form class="col s12"> 
+                                <p class="center-align">Informações do Objeto</p>
+                                <img class="center-block" src="#{locacaoControle.objeto.imagem}"  style="width: 150px" /> 
+                                <br/>
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        <i class="material-icons prefix" aria-hidden="true">local_offer</i>
+                                        <input style="width: 80%" value="#{locacaoControle.objeto.nome}" readonly="readonly" id="disabled" type="text"/>
+                                        <label for="disabled">Objeto</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        <i class="material-icons prefix" aria-hidden="true">attach_money</i>
+                                        <input style="width: 27%" value=" R$ #{locacaoControle.objeto.preco}" readonly="readonly" id="disabled" type="text"/>
+                                        <label for="disabled">Preço</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <input style="margin-left: -125px ;width: 32%" value="#{locacaoControle.objeto.tipoPreco.descricaoTipoPreco}" readonly="readonly" id="disabled" type="text"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        <i class="material-icons prefix" aria-hidden="true">account_box</i>
+                                        <input style="width: 80%" value="#{locacaoControle.objeto.usuario.nomeUsuario}" readonly="readonly" id="disabled" type="text"/>
+                                        <label for="disabled">Proprietário</label>
+                                    </div>
+                                </div>     
+                                <br/>
+                                <div class="divider"></div>                                
+                                <h5 class="center">Localização para a Pegada do Objeto</h5>
+                                <br/>
+                                <h:commandButton class="btnBoot btnBoot-outline-warning" value="Usar minha localização" action="#{locacaoControle.usarMinhaLoc()}"></h:commandButton>
+                                <br/>
+                                <br/>
+                                <div class="input-field s12">
+                                    <i class="material-icons prefix" aria-hidden="true">map</i>
+                                    <h:inputText onkeydown="Mascara(this, Cep);"
+                                                 onkeyup="Mascara(this, Cep);" 
+                                                 onkeypress="Mascara(this, Cep);" style="width: 50%" maxlength="15" class="input100" value="#{locacaoControle.locacao.cep}"/>
+                                    <label>CEP</label>
+                                    <h:commandButton style="width: 20%" class="btn btn--radius-2 btn--blue col s2" value="Buscar" type="submit" action="#{locacaoControle.cepConfirma()}"/>
+                                </div> 
+                                <a style="margin-top: -10px" class="nav-link center-align" href="https://cep.telelistas.net/" target="blank">Não sei meu CEP</a>
+                                <div class="input-field s12">
+                                    <i class="material-icons prefix" aria-hidden="true">language</i>
+                                    <h:inputText style="width: 80%" class="input100" value="#{locacaoControle.locacao.estadoPegada}">
+                                    </h:inputText>
+                                    <label>Estado</label>
+                                </div> 
+                                <div class="input-field s12">
+                                    <i class="material-icons prefix" aria-hidden="true">location_city</i>
+                                    <h:inputText style="width: 80%" class="input100" value="#{locacaoControle.locacao.cidadePegada}">
+                                    </h:inputText>
+                                    <label>Cidade</label>
+                                </div> 
+                                <div class="input-field s12">
+                                    <i class="material-icons prefix" aria-hidden="true">location_searching</i>
+                                    <h:inputText style="width: 80%" class="input100" value="#{locacaoControle.locacao.bairroPegada}">
+                                    </h:inputText>
+                                    <label>Bairro</label>
+                                </div> 
+                                <div class="input-field s12">
+                                    <i class="material-icons prefix" aria-hidden="true">location_on</i>
+                                    <h:inputText style="width: 80%" class="input100" value="#{locacaoControle.locacao.enderecoPegada}">
+                                    </h:inputText>
+                                    <label>Endereço</label>
+                                </div> 
+                                <div class="input-field s12">
+                                    <i class="material-icons prefix" aria-hidden="true">looks_5</i>
+                                    <h:inputText style="width: 80%" class="input100" value="#{locacaoControle.locacao.numeroResidencia}">
+                                    </h:inputText>
+                                    <label>Numero da Residência</label>
+                                </div> 
+                                <div class="input-field s12">
+                                    <i class="material-icons prefix" aria-hidden="true">home</i>
+                                    <h:inputText style="width: 80%" class="input100" value="#{locacaoControle.locacao.complementoPegada}">
+                                    </h:inputText>
+                                    <label>Complemento</label>
+                                </div> 
+                                <br/>
+                                <div class="divider"></div> 
+                                <h5 class="center">Datas</h5>
+                                <br/>
+                                <div class="input-field s12">
+                                    <i class="material-icons prefix" aria-hidden="true">input</i>
+                                    <h:inputText class="datepicker" style="width: 80%" value="#{locacaoControle.locacao.dataInicial}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                    </h:inputText>
+                                    <label>Data Inicial do Aluguel</label>
+                                </div>
+                                <div class="input-field s12">
+                                    <i class="material-icons prefix" aria-hidden="true">open_in_new</i>
+                                    <h:inputText class="datepicker" style="width: 80%" value="#{locacaoControle.locacao.dataFinal}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                    </h:inputText>
+                                    <label>Data Final do Aluguel</label>
+                                </div>
+                                <br/>
+                                <div class="input-field s12">
+                                    <i class="material-icons prefix" aria-hidden="true">attach_money</i>
+                                    <h:inputText style="width: 20%" disabled="true" class="input100" value="R$ #{locacaoControle.locacao.preco}"/>
+                                    <label>Preço Total</label>
+                                    <h:commandButton style="width: 23%" class="btn btn--radius-2 btn--blue col s2" value="Calcular" type="submit" action="#{locacaoControle.calculoPreco()}"/>
+                                </div> 
+                                <script type="text/javascript" src="js/jquery.min.js"></script>
+                                <script type="text/javascript" src="js/materialize.min.js"></script>
+                                <script>
+                                                     document.addEventListener('DOMContentLoaded', function () {
+                                                         var elems = document.querySelectorAll('.datepicker');
+                                                         var instances = M.Datepicker.init(elems, options);
+                                                     });
+
+                                                     // Or with jQuery
+
+                                                     $(document).ready(function () {
+                                                         $('.datepicker').datepicker({
+                                                             i18n: {
+                                                                 months: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                                                                 monthsShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                                                                 weekdays: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabádo'],
+                                                                 weekdaysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+                                                                 weekdaysAbbrev: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
+                                                                 today: 'Hoje',
+                                                                 clear: 'Limpar',
+                                                                 cancel: 'Sair',
+                                                                 done: 'Confirmar',
+                                                                 labelMonthNext: 'Próximo mês',
+                                                                 labelMonthPrev: 'Mês anterior',
+                                                                 labelMonthSelect: 'Selecione um mês',
+                                                                 labelYearSelect: 'Selecione um ano',
+                                                                 selectMonths: true,
+                                                                 selectYears: 15,
+                                                             },
+                                                             format: 'dd/mm/yyyy',
+                                                             container: 'body',
+                                                             minDate: new Date(),
+                                                         });
+                                                     });
+                                </script>                                
+                                <br/>
+                                <p>
+                                    <label>
+                                        <input type="checkbox" />
+                                        <span>Li e aceito os <a href="https://cep.telelistas.net/" target="blank">termos de contrato.</a></span>
+                                    </label>
+                                </p>
+                                <br/>
+                                <div>
+                                    <h:commandButton style="width: 40%" class="btn btn--radius-2 btn--blue" value="Salvar" type="submit" action="#{locacaoControle.salvar()}"/>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:decorate>
+    </h:body>
+
+</html>

@@ -1,0 +1,345 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Calendario do Item</title>
+        <link href="css/style.css" rel="stylesheet"/>
+        <link href="css/materialize.css" rel="stylesheet"/>
+        <link href="css/materialize.min.css" rel="stylesheet"/>
+        <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+        <link rel="stylesheet" type="text/css" href="css/box.css"/>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"/>
+    </h:head>
+
+    <h:body>
+        <ui:decorate template="/template/layout.xhtml">
+            <ui:define name="content">
+                <div class="container100"> 
+                    <div class="wrap-login100" style=" padding: 17px 0px 33px 67px">
+                        <br/>
+                        <h:form>
+                            <h5 align="center"> Calendário do Item </h5>
+                            <br/>
+                            <br/>
+                            <div class="row" style="width: 820px; margin-right: 50px">
+                                <div class="col s12">
+                                    <ul class="tabs">
+                                        <li class="tab col s3"><a href="#aguardando">Aguardando Confirmação</a></li>
+                                        <li class="tab col s3"><a href="#aceitos">Aceitos</a></li>
+                                        <li class="tab col s3"><a href="#andamento">Em Andamento</a></li>
+                                        <li class="tab col s3"><a href="#devolvidos">Devolvidos</a></li>
+                                    </ul>
+                                    <div class="linhaTab col s12" style="margin-bottom: 1px"></div>
+                                </div>  
+                                <div id="aguardando" class="col s12">
+                                    <table class="table-fillPedidos highlight" 
+                                           value="#{locacaoControle.listaPedidosObj}"
+                                           var="al" style="margin-left: 0px">
+                                        <tbody class="table-hover">
+
+                                        <ui:repeat id="tabelaAguarda"
+                                                   value="#{locacaoControle.listaPedidosObj}"
+                                                   var="al">
+                                            <tr>
+                                                <td style="width: 15%"><img style=" width: 100%" src="images/img-01.png" class="center-block"  alt="IMG"/></td>
+
+                                                <td class="text-left" style="width: 30%; padding-left: 10px">#{al.usuario.nomeUsuario} 
+                                                    <br/> <br/> 
+                                            <p:outputLabel class="grey-text text-darken-4 center-align" style="font-size: smaller" value="#{al.usuario.msg}"><img src="images/estrelinha.png" style="width: 12px; margin-left: 5px; margin-top: 2px"/></p:outputLabel> 
+                                            <br/> <br/> 
+                                            De <p:outputLabel class="green-text" value="#{al.dataInicial}"> <f:convertDateTime pattern="dd/MM/yyyy"/> </p:outputLabel>  até 
+                                            <p:outputLabel class="red-text" value="#{al.dataFinal}"> <f:convertDateTime pattern="dd/MM/yyyy"/> </p:outputLabel>
+                                            </td>
+                                            <td style="width: 1%">
+                                                <div class="dividerVertical"></div>
+                                            </td>
+                                            <td class="center" style="width: 20%">
+                                            <p:outputLabel class="center" style="font-size: 19px; color: black">R$</p:outputLabel> <p:outputLabel class="center" style="font-size: 19px; color: black; margin-left: 2px" value="#{al.preco}" > 
+                                                <f:convertNumber pattern="#0.00"/></p:outputLabel>
+                                            </td>
+                                            <td style="width: 1%">
+                                                <div class="dividerVertical"></div>
+                                            </td>
+                                            <td style="width: 15%">
+                                            <p:commandLink action="#{locacaoControle.preparaModal(al)}" class="btnBoot btnBoot-outline-green" style="margin-left: 25%; margin-top: 16px" oncomplete="PF('aceitar').show()">
+                                                <f:setPropertyActionListener target="#{locacaoControle.locacao}"
+                                                                             value="#{al}" />
+                                                <i class="material-icons center-block">check_circle</i>
+                                            </p:commandLink>
+                                            <p:commandLink action="#{locacaoControle.preparaModal(al)}" class="btnBoot btnBoot-outline-danger" style="margin-left: 25%; margin-top: 16px" oncomplete="PF('rejeitar').show()">
+                                                <f:setPropertyActionListener target="#{locacaoControle.locacao}"
+                                                                             value="#{al}" />
+                                                <i class="material-icons center-block">cancel</i>
+                                            </p:commandLink>
+                                            <h:commandLink action="#{locacaoControle.infoPedidoItem(al)}" style="margin-left: 25%; margin-top: 10px" type="button" class="btnBoot btnBoot-outline-warning"><i class="material-icons center-block">info_outline</i></h:commandLink>                                                      
+                                            </td>                            
+                                            </tr>
+                                        </ui:repeat>
+
+                                        </tbody>
+                                    </table></div>
+                                <div id="aceitos" class="col s12">
+                                    <table class="table-fillPedidos highlight" 
+                                           value="#{locacaoControle.listaAceitosObj}"
+                                           var="al" style="margin-left: 0px">
+                                        <tbody class="table-hover">
+
+                                        <ui:repeat id="tabelaAceitos"
+                                                   value="#{locacaoControle.listaAceitosObj}"
+                                                   var="al">
+                                            <tr>
+                                                <td style="width: 15%"><img style=" width: 100%" src="images/img-01.png" class="center-block"  alt="IMG"/></td>
+
+                                                <td class="text-left" style="width: 30%; padding-left: 10px">#{al.usuario.nomeUsuario} 
+
+                                                    <br/> <br/> 
+                                            <p:outputLabel class="grey-text text-darken-4 center-align" style="font-size: smaller" value="#{al.usuario.msg}"><img src="images/estrelinha.png" style="width: 12px; margin-left: 5px; margin-top: 2px"/></p:outputLabel> 
+                                            <br/> <br/> 
+                                            De <p:outputLabel class="green-text" value="#{al.dataInicial}"> <f:convertDateTime pattern="dd/MM/yyyy"/> </p:outputLabel>  até 
+                                            <p:outputLabel class="red-text" value="#{al.dataFinal}"> <f:convertDateTime pattern="dd/MM/yyyy"/> </p:outputLabel>
+                                            </td>
+                                            <td style="width: 1%">
+                                                <div class="dividerVertical"></div>
+                                            </td>
+                                            <td class="center" style="width: 20%">
+                                            <p:outputLabel class="center" style="font-size: 19px; color: black">R$</p:outputLabel> <p:outputLabel class="center" style="font-size: 19px; color: black; margin-left: 2px" value="#{al.preco}" > 
+                                                <f:convertNumber pattern="#0.00"/></p:outputLabel>
+                                            </td>
+                                            <td style="width: 1%">
+                                                <div class="dividerVertical"></div>
+                                            </td>
+                                            <td style="width: 15%">
+                                            <h:commandLink action="#{locacaoControle.infoPedidoItem(al)}" style="margin-left: 25%" type="button" class="btnBoot btnBoot-outline-warning"><i class="material-icons center-block">info_outline</i></h:commandLink>
+                                            </td>                            
+                                            </tr>
+                                        </ui:repeat>
+
+                                        </tbody>
+                                    </table></div>
+                                <div id="andamento" class="col s12">
+                                    <table class="table-fillPedidos highlight" 
+                                           value="#{locacaoControle.listaEmAndamentoObj}"
+                                           var="al" style="margin-left: 0px">
+                                        <tbody class="table-hover">
+
+                                        <ui:repeat id="tabelaEmAndamento"
+                                                   value="#{locacaoControle.listaEmAndamentoObj}"
+                                                   var="al">
+                                            <tr>
+                                                <td style="width: 15%"><img style=" width: 100%" src="images/img-01.png" class="center-block"  alt="IMG"/></td>
+
+                                                <td class="text-left" style="width: 30%; padding-left: 10px">#{al.usuario.nomeUsuario} 
+
+                                                    <br/> <br/> 
+                                            <p:outputLabel class="grey-text text-darken-4 center-align" style="font-size: smaller" value="#{al.usuario.msg}"><img src="images/estrelinha.png" style="width: 12px; margin-left: 5px; margin-top: 2px"/></p:outputLabel> 
+                                            <br/> <br/> 
+                                            De <p:outputLabel class="green-text" value="#{al.dataInicial}"> <f:convertDateTime pattern="dd/MM/yyyy"/> </p:outputLabel>  até 
+                                            <p:outputLabel class="red-text" value="#{al.dataFinal}"> <f:convertDateTime pattern="dd/MM/yyyy"/> </p:outputLabel>
+                                            </td>
+                                            <td style="width: 1%">
+                                                <div class="dividerVertical"></div>
+                                            </td>
+                                            <td class="center" style="width: 20%">
+                                                <p:outputLabel class="center" style="font-size: 19px; color: black">R$</p:outputLabel> <p:outputLabel class="center" style="font-size: 19px; color: black; margin-left: 2px" value="#{al.preco}" > 
+                                                <f:convertNumber pattern="#0.00"/></p:outputLabel>
+                                            </td>
+                                            <td style="width: 1%">
+                                                <div class="dividerVertical"></div>
+                                            </td>
+                                            <td style="width: 15%">
+                                            <h:commandLink action="#{locacaoControle.infoPedidoItem(al)}" style="margin-left: 25%" type="button" class="btnBoot btnBoot-outline-warning"><i class="material-icons center-block">info_outline</i></h:commandLink>                                   
+                                            <p:commandLink action="#{locacaoControle.preparaModal(al)}" class="btnBoot btnBoot-outline-green" style="margin-left: 25%; margin-top: 16px" oncomplete="PF('devolveu').show()">
+                                                <f:setPropertyActionListener target="#{locacaoControle.locacao}"
+                                                                             value="#{al}" />
+                                                <i class="material-icons center-block">exit_to_app</i>
+                                            </p:commandLink>                                                
+                                            </td>                            
+                                            </tr>
+                                        </ui:repeat>
+
+                                        </tbody>
+                                    </table></div>
+                                <div id="devolvidos" class="col s12">
+                                    <table class="table-fillPedidos highlight" 
+                                           value="#{locacaoControle.listaDevolvidosObj}"
+                                           var="al" style="margin-left: 0px">
+                                        <tbody class="table-hover">
+
+                                        <ui:repeat id="tabelaDevolvidos"
+                                                   value="#{locacaoControle.listaDevolvidosObj}"
+                                                   var="al">
+                                            <tr>
+                                                <td style="width: 15%"><img style=" width: 100%" src="images/img-01.png" class="center-block"  alt="IMG"/></td>
+
+                                                <td class="text-left" style="width: 30%; padding-left: 10px">#{al.usuario.nomeUsuario} 
+
+                                                    <br/> <br/> 
+                                            <p:outputLabel class="grey-text text-darken-4 center-align" style="font-size: smaller" value="#{al.usuario.msg}"><img src="images/estrelinha.png" style="width: 12px; margin-left: 5px; margin-top: 2px"/></p:outputLabel> 
+                                            <br/> <br/> 
+                                            De <p:outputLabel class="green-text" value="#{al.dataInicial}"> <f:convertDateTime pattern="dd/MM/yyyy"/> </p:outputLabel>  até 
+                                            <p:outputLabel class="red-text" value="#{al.dataFinal}"> <f:convertDateTime pattern="dd/MM/yyyy"/> </p:outputLabel>
+                                            </td>
+                                            <td style="width: 1%">
+                                                <div class="dividerVertical"></div>
+                                            </td>
+                                            <td class="center" style="width: 20%">
+                                                <p:outputLabel class="center" style="font-size: 19px; color: black">R$</p:outputLabel> <p:outputLabel class="center" style="font-size: 19px; color: black; margin-left: 2px" value="#{al.preco}" > 
+                                                <f:convertNumber pattern="#0.00"/></p:outputLabel>
+                                            </td>
+                                            <td style="width: 1%">
+                                                <div class="dividerVertical"></div>
+                                            </td>
+                                            <td style="width: 15%">
+                                            <h:commandLink action="#{locacaoControle.infoPedidoItem(al)}" style="margin-left: 25%" type="button" class="btnBoot btnBoot-outline-warning"><i class="material-icons center-block">info_outline</i></h:commandLink>                 
+                                            <p:commandLink action="#{locacaoControle.preparaModal(al)}" class="btnBoot btnBoot-outline-info" style="margin-left: 25%; margin-top: 16px" oncomplete="PF('opiniao').show()">
+                                                <f:setPropertyActionListener target="#{locacaoControle.locacao}"
+                                                                             value="#{al}" />
+                                                <i class="material-icons center-block">sentiment_neutral</i>
+                                            </p:commandLink> 
+                                            </td>                            
+                                            </tr>
+                                        </ui:repeat>
+
+                                        </tbody>
+                                    </table></div>    
+                            </div>
+
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+                            <script>
+                                $(document).ready(function () {
+                                    $('.tabs').tabs();
+                                });
+                            </script>
+                            <br/>
+                            <br/>
+                            <div class="row" style="width: 820px; margin-right: 50px">
+                                <div class="col s6">
+                                    <div class="section hoverable" style="border: 1px solid Gainsboro; padding: 15px; border-radius: 5px; min-height: 273px">
+                                        <h5 style="font-size: large" class="center-align ">Perguntas</h5>
+                                        <br/>
+                                        <ui:repeat id="tabela"
+                                                   value="#{locacaoControle.listaObjetoPerguntasMens}"
+                                                   var="me" >
+                                            <tr>
+                                                <td class="text-center"><i style="opacity: 0.8" class="material-icons left">message</i> #{me.descricaoMensagem}</td>
+                                            <br/>
+                                            <br/>
+                                            <td><i style="opacity: 0.6; transform: rotateY(180deg)" class="material-icons left">message</i><p id="resposta" style="opacity: 0.7; margin-top: 0px"> #{me.descricaoResp} </p></td>
+                                            <p:commandLink action="#{mensagemControle.preparaResposta(me)}" value="responder" style="margin-top: 8px; font-size: 15px; opacity: 0.8" oncomplete="PF('responder').show()">
+                                                <f:setPropertyActionListener target="#{mensagemControle.mensagem}"
+                                                                             value="#{me}" />
+                                            </p:commandLink> 
+                                            <br/>
+                                            <br/>
+                                            </tr>
+                                        </ui:repeat>
+                                        <br/>
+                                    </div>
+                                </div>
+                                <div class="col s6">
+                                    <div class="section hoverable" style="border: 1px solid Gainsboro; padding: 15px; border-radius: 5px; min-height: 273px">
+                                        <h5 style="font-size: large" class="center-align">Opiniões</h5>
+                                        <div class="center">
+                                            <p:outputLabel class="grey-text text-darken-4 center" style="font-size: medium" value="#{objeto.msg}" > 
+                                                <img src="images/estrelinha.png" style="width: 15px; margin-left: 5px; margin-top: 3px"/></p:outputLabel>   
+                                        </div>
+                                        <br/>
+                                        <ui:repeat id="tabela2"
+                                                   value="#{locacaoControle.listaOpinioes}"
+                                                   var="op" >
+                                            <tr>
+                                            <div class="row" style="margin-bottom: -5px; opacity: 0.8; margin-left: 0px"><i class="material-icons left" style="margin-top: -3px">account_circle</i><p style="font-size: 12px; margin-left: -155px">#{op.usuario.nomeUsuario}</p></div>
+                                            <p:rating value="#{op.classificacaoItem}" readonly="true"/>
+                                            </tr>
+                                            <br/>
+                                            <tr>
+                                                #{op.opiniaoItem}
+                                            </tr>
+                                            <br/>
+                                            <br/>
+                                            <br/>
+                                        </ui:repeat>
+                                        <br/>
+                                    </div>
+                                </div>
+                            </div>
+                            <br/>
+                            <br/>
+                            <h:commandLink action="#{objetoControle.redirecionarRelatorios()}" type="button" class="btnBoot btnBoot-outline-danger">Relatórios</h:commandLink>
+                            <br/>
+                            <br/>
+                        </h:form>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:decorate>
+        <p:confirmDialog class="modal" header="Opinião sobre a locação"
+                         widgetVar="opiniao" severity="" width="700">
+
+            <h:form id="formPainel" enctype="multipart/form=data"> 
+                <div class="modal-content" style="margin-top: -73px; width: 700px; height: 600px; margin-left: -7px">
+                    <p:rating value="#{locacaoControle.locacao.classificacaoLocador}"/>
+                    <label>Avalie o locador</label>
+                    <br/>
+                    <h:inputTextarea value="#{locacaoControle.locacao.opiniaoLocador}" />
+                    <label>Descreva a sua avaliação sobre o locador</label>
+                    <br/><br/>
+                    <h:commandButton style="width: 20%" class="btn" value="Salvar" type="submit" action="#{locacaoControle.salvarOpiniaoLocatario()}"/>
+                </div>
+            </h:form>
+        </p:confirmDialog>
+
+        <p:confirmDialog class="modal" header="Responder pergunta"
+                         widgetVar="responder" severity="" width="700" style="max-height: 250px">
+
+            <h:form id="formPainelResp" enctype="multipart/form=data"> 
+                <div class="modal-content" style="margin-top: -73px; width: 700px; height: 600px; margin-left: -7px">
+                    <h:inputTextarea value="#{mensagemControle.mensagem.descricaoMensagem}" />
+                    <label>Responda</label>
+                    <br/><br/>
+                    <h:commandButton style="width: 20%" class="btn" value="Salvar" type="submit" action="#{mensagemControle.salvarResposta()}"/>
+                </div>
+            </h:form>
+        </p:confirmDialog>
+
+        <p:confirmDialog class="modal" header="Aceitar pedido" message="Realmente deseja aceitar o pedido?"
+                         widgetVar="aceitar" severity="alert" width="350" height="30px" style="max-height: 175px">
+            <h:form id="formPainelCancel" enctype="multipart/form=data" > 
+                <span>
+                    <h:commandLink onclick="PF('aceitar').hide()" style="margin-left: 20%; width: 20%; margin-top: 5px "     
+                                   action="#{locacaoControle.aceitarPedido()}" type="button" class="btnBoot btnBoot-outline-green">Sim</h:commandLink>
+                    <h:commandLink style="margin-left: 20%; width: 20%; margin-top: 5px" type="button" class="btnBoot btnBoot-outline-danger" onclick="PF('aceitar').hide()">Não</h:commandLink>
+                </span>
+            </h:form>
+        </p:confirmDialog>
+
+        <p:confirmDialog class="modal" header="Rejeitar pedido" message="Realmente deseja rejeitar o pedido?"
+                         widgetVar="rejeitar" severity="alert" width="350" height="30px" style="max-height: 175px">
+            <h:form id="formPainelChegada" enctype="multipart/form=data" > 
+                <span>
+                    <h:commandLink onclick="PF('rejeitar').hide()" style="margin-left: 20%; width: 20%; margin-top: 5px "     
+                                   action="#{locacaoControle.rejeitarPedido()}" type="button" class="btnBoot btnBoot-outline-green">Sim</h:commandLink>
+                    <h:commandLink style="margin-left: 20%; width: 20%; margin-top: 5px" type="button" class="btnBoot btnBoot-outline-danger" onclick="PF('rejeitar').hide()">Não</h:commandLink>
+                </span>
+            </h:form>
+        </p:confirmDialog>
+        <p:confirmDialog class="modal" header="Confirmar recebimento" message="Você recebeu seu objeto?"
+                         widgetVar="devolveu" severity="alert" width="350" height="30px" style="max-height: 175px">
+            <h:form id="formPainelDev" enctype="multipart/form=data" > 
+                <span>
+                    <h:commandLink onclick="PF('devolveu').hide()" style="margin-left: 20%; width: 20%; margin-top: 5px "     
+                                   action="#{locacaoControle.pedidoDevolvido()}" type="button" class="btnBoot btnBoot-outline-green">Sim</h:commandLink>
+                    <h:commandLink style="margin-left: 20%; width: 20%; margin-top: 5px" type="button" class="btnBoot btnBoot-outline-danger" onclick="PF('devolveu').hide()">Não</h:commandLink>
+                </span>
+            </h:form>
+        </p:confirmDialog>
+    </h:body>
+
+</html>
+

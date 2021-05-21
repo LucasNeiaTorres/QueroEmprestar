@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui" 
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <title>Página Inicial</title>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+        <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+        <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="css/style.css"  media="screen,projection"/>
+    </h:head>
+
+    <h:body>
+
+        <ui:decorate template="/template/layout.xhtml">
+            <ui:define name="content">
+                <p:link style="opacity: 0; position: absolute" value="Controle" />
+                <h:form id="form" style="margin: 15px 15px 15px 15px">
+                    <section class="event_area">
+                        <div class="row">     
+                            <ui:repeat id="tabela"
+                                       value="#{usuarioControle.listaObjeto}"
+                                       var="i" class="s">
+                                <tbody id="myList">
+                                    <tr>    
+                                <div class="col s3Card m3">
+                                    <div class="card hoverable" style="height: 475px">
+                                        <div class="card-image waves-effect waves-block waves-light">
+                                            <br/>
+                                            <div class="single_event">
+                                                <figure class="activator">
+                                                    <img src="#{i.imagem}" style="width: 70%; height: 210px" class="center-block"/> 
+                                                </figure> 
+                                            </div>                                                             
+                                        </div>
+                                        <div class="card-content">
+                                            <span class="card-title activator grey-text text-darken-4">#{i.nome}<i style="margin-right: -23px" class="material-icons right">more_vert</i></span>                              
+                                            <br/>
+                                            <p style="opacity: 0.93">#{i.descricaoItem}</p>
+                                            <br/>
+                                            <div class="center">
+                                                <p:outputLabel class="grey-text text-darken-4 center-on-small-only" style="font-size: x-large; font-family: Arial">R$</p:outputLabel> <p:outputLabel class="grey-text text-darken-4 center-align" style="font-size: x-large" value="#{i.preco}" > 
+                                                    <f:convertNumber pattern="#0.00"/> #{i.tipoPreco.descricaoTipoPreco}</p:outputLabel>
+                                            </div>
+                                        </div>
+                                        <div class="card-reveal">
+                                            <span class="card-title grey-text text-darken-4">#{i.nome}<i class="material-icons right">close</i></span>
+                                            <p>#{i.descricaoItem}</p>
+                                        </div>
+                                        <div class="card-action center">    
+                                            <h:commandLink action="#{objetoControle.preparaVisualizacao(i)}">  Ver mais </h:commandLink>       
+                                        </div>
+                                    </div>
+                                </div>
+                                </tr>
+                                </tbody>
+                            </ui:repeat>
+                        </div>
+
+                        <ul class="pagination center">
+                            <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+                            <li class="active"><a href="#!">1</a></li>
+                            <li class="waves-effect"><a href="#!">2</a></li>
+                            <li class="waves-effect"><a href="#!">3</a></li>
+                            <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+                        </ul>
+                    </section>
+                    <script>
+                        $(document).ready(function () {
+                            $("#myInput").on("keyup", function () {
+                                var value = $(this).val().toLowerCase();
+                                $("#myList tr").filter(function () {
+                                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                                });
+                            });
+                        });
+                    </script>
+                    <br/>   
+                    <br/>
+                    <br/>
+                </h:form>
+            </ui:define>
+        </ui:decorate>
+    </h:body>
+</html>

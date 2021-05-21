@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui" xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head>
+        <title>Item</title>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+        <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+
+        <link type="text/css" rel="stylesheet" href="css/table.css"/>
+        <link href="css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="css/style.css" rel="stylesheet"/>
+        <meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; width=device-width;"/>
+
+
+    </h:head>
+    <h:body>
+
+        <ui:decorate template="/template/layout.xhtml">
+            <ui:define name="content">
+
+
+                <h:form id="formTabela">
+                    <div style="margin-left: 30px">
+                        <ul class="collapsible popout" style="width: 80%">
+                            <li>
+                                <div class="collapsible-header"><i class="material-icons">event_note</i>Informações sobre o Pedido</div>
+                                <div class="collapsible-body"><span>Período: de #{locacaoControle.locacao.dataInicial} até #{locacaoControle.locacao.dataFinal}</span>
+                                    <br/>
+                                    Situação: #{locacaoControle.locacao.situacao}
+                                    <br/>
+                                    Preço: #{locacaoControle.locacao.preco} R$
+                                    <br/>
+                                    <div class="divider"></div>
+                                    Estado de Pegada: #{locacaoControle.locacao.estadoPegada}
+                                    <br/>
+                                    Cidade de Pegada: #{locacaoControle.locacao.cidadePegada}
+                                    <br/>
+                                    Bairro de Pegada: #{locacaoControle.locacao.bairroPegada}
+                                    <br/>
+                                    Endereço de Pegada: #{locacaoControle.locacao.enderecoPegada}
+                                    <br/>
+                                    Número da Residência de Pegada: #{locacaoControle.locacao.numeroResidencia}
+                                    <br/>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul class="collapsible popout" style="width: 80%">
+                            <li>
+                                <div class="collapsible-header"><i class="material-icons">person_pin</i>Informações sobre o Usuário</div>
+                                <div class="collapsible-body">
+                                    Nome: <h:commandLink action="#{usuarioControle.redirecionarUsuSeleInfo()}">#{locacaoControle.locacao.usuario.nomeUsuario}</h:commandLink>
+                                    <br/>
+                                    Telefone: #{locacaoControle.locacao.usuario.telefone}
+                                    <br/>
+                                    Email: #{locacaoControle.locacao.usuario.email}
+                                    <br/>
+                                    Classificação: #{locacaoControle.locacao.usuario.msg}
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <script type="text/javascript" src="js/materialize.min.js"></script>
+
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                            var elems = document.querySelectorAll('.collapsible');
+                            var instances = M.Collapsible.init(elems, options);
+                        });
+
+                        // Or with jQuery
+
+                        $(document).ready(function () {
+                            $('.collapsible').collapsible();
+                        });
+
+                        var elem = document.querySelector('.collapsible.expandable');
+                        var instance = M.Collapsible.init(elem, {
+                        });
+
+                    </script>
+                </h:form>
+
+            </ui:define>
+        </ui:decorate>
+    </h:body>
+
+</html>

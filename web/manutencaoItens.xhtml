@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Manutenção de Itens</title>
+        <link href="css/materialize.css" rel="stylesheet"/>
+        <link href="css/materialize.min.css" rel="stylesheet"/>
+        <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+        <link href="css/bootstrap.min.css" rel="stylesheet"/>
+        <link rel="stylesheet" type="text/css" href="css/box.css"/>
+    </h:head>
+
+    <h:body>
+
+        <ui:decorate template="/template/layout.xhtml">
+            <ui:define name="content">    
+                <div class="container100"> 
+                    <div class="wrap-login100" style=" padding: 17px 0px 33px 67px">
+                        <h:form id="formTabelaa">                 
+                            <h5 align="center"> Meus itens </h5>
+                            <br/>
+                            <br/>
+                            <div class="row" style="width: 820px">
+                                <div class="col s12">
+                                    <table class="table-fillPedidos highlight" 
+                                           value="#{objetoControle.listaUsuario}"
+                                           var="i" style="border: 1px solid lightgrey">
+                                        <tbody>
+
+                                        <ui:repeat id="tabelaAguarda"
+                                                   value="#{objetoControle.listaUsuario}"
+                                                   var="i">
+                                            <tr>
+                                                <td style="width: 10%"><img style=" width: 100%" src="#{i.imagem}" class="center-block"  alt="IMG"/></td>
+
+                                                <td class="text-left" style="width: 30%; padding-left: 15px; font-size: medium">#{i.nome}
+                                                    <br/><br/> 
+                                            <p:outputLabel class="grey-text text-darken-4 center-align" style="font-size: smaller" value="#{i.msg}"><img src="images/estrelinha.png" style="width: 12px; margin-left: 5px; margin-top: -4px"/></p:outputLabel> 
+                                            <br/> <br/> 
+                                            <p style="font-size: medium">R$ <p:outputLabel class="grey-text text-darken-4 center-align" style="font-size: medium" value="#{i.preco}" > 
+                                                <f:convertNumber pattern="#0.00"/></p:outputLabel> #{i.tipoPreco.descricaoTipoPreco}</p>
+                                            </td>
+                                            <td style="width: 15%">
+                                            <h:commandLink style="margin-left: 30%" type="button" class="btnBoot btnBoot-outline-info" action="#{locacaoControle.redirecionarCalendario(i)}"><i class="material-icons">date_range</i></h:commandLink>
+                                            <p:commandLink style="margin-left: 30%; margin-top: 20px" action="#{objetoControle.preparaAlterar()}" type="button" class="btnBoot btnBoot-outline-info"><i class="material-icons">edit</i>
+                                                <f:setPropertyActionListener target="#{objetoControle.objeto}" value="#{i}"/>
+                                            </p:commandLink>                            
+                                            </td>
+                                            </tr>
+                                        </ui:repeat>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <br/>
+                            <br/>
+                        </h:form>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:decorate>
+    </h:body>
+
+</html>

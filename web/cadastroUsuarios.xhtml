@@ -1,0 +1,294 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Cadastro Usuário</title>
+        <!-- Icons font CSS-->
+        <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all"/>
+        <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all"/>
+        <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+        <!-- Materialize CSS-->
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+        <!-- Font special for pages-->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet"/>
+
+        <!-- Vendor CSS-->
+        <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all"/>
+        <link href="vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all"/>
+
+        <!-- Main CSS-->
+        <link href="css/main.colorlib.css" rel="stylesheet" media="all"/>
+        <link href="css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="css/style.css" rel="stylesheet"/>
+
+        <!--Importando Script Jquery-->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+        <script>
+            function excluir() {
+                if (confirm("Confirma a exclusï¿½o?")) {
+                    return true;
+                } else
+                    return false;
+            }
+
+            /*Funcao Pai de Mascaras*/
+            function Mascara(o, f) {
+                v_obj = o;
+                v_fun = f;
+                setTimeout("execmascara()", 1);
+            }
+
+            /*Funcao que Executa os objetos*/
+            function execmascara() {
+                v_obj.value = v_fun(v_obj.value);
+            }
+
+            /*Funcao que Determina as expressoess regulares dos objetos*/
+            function leech(v) {
+                v = v.replace(/o/gi, "0");
+                v = v.replace(/i/gi, "1");
+                v = v.replace(/z/gi, "2");
+                v = v.replace(/e/gi, "3");
+                v = v.replace(/a/gi, "4");
+                v = v.replace(/s/gi, "5");
+                v = v.replace(/t/gi, "7");
+                return v;
+            }
+
+            /*Funcao que permite apenas numeros*/
+            function Integer(v) {
+                return v.replace(/\D/g, "");
+            }
+
+            /*Funcao que padroniza telefone (99) 9999-9999*/
+            function TelefoneFixo(v) {
+
+                v = v.replace(/\D/g, "");
+                v = v.replace(/^(\d\d)(\d)/g, "($1) $2");
+                v = v.replace(/(\d{4})(\d)/, "$1-$2");
+                return v;
+            }
+
+            /*Funcao que padroniza telefone (99) 9999-9999*/
+            function Telefone(v) {
+
+                v = v.replace(/\D/g, "");
+                v = v.replace(/^(\d\d)(\d)/g, "($1) $2");
+                v = v.replace(/(\d{5})(\d)/, "$1-$2");
+                return v;
+            }
+
+            /*Funcao que padroniza CPF*/
+            function Cpf(v) {
+                v = v.replace(/\D/g, "");
+                v = v.replace(/(\d{3})(\d)/, "$1.$2");
+                v = v.replace(/(\d{3})(\d)/, "$1.$2");
+                v = v.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+                return v;
+            }
+            /*Funcao que padroniza RG*/
+            function RG(v) {
+                v = v.replace(/\D/g, "");
+                v = v.replace(/(\d{2})(\d)/, "$1.$2");
+                v = v.replace(/(\d{3})(\d)/, "$1.$2");
+                v = v.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+                return v;
+            }
+
+            /*Funcao que padroniza CEP*/
+            function Cep(v) {
+                v = v.replace(/D/g, "");
+                v = v.replace(/^(\d{5})(\d)/, "$1-$2");
+                return v;
+            }
+
+            /*Funcao que padroniza CNPJ*/
+            function Cnpj(v) {
+                v = v.replace(/\D/g, "");
+                v = v.replace(/^(\d{2})(\d)/, "$1.$2");
+                v = v.replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3");
+                v = v.replace(/\.(\d{3})(\d)/, ".$1/$2");
+                v = v.replace(/(\d{4})(\d)/, "$1-$2");
+                return v;
+            }
+
+            /*Funcao que permite apenas numeros Romanos*/
+            function Romanos(v) {
+                v = v.toUpperCase();
+                v = v.replace(/[^IVXLCDM]/g, "");
+                while (v.replace(/^M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$/, "") != "")
+                    v = v.replace(/.$/, "");
+                return v;
+            }
+
+
+
+            /*Funcao que padroniza DATA*/
+            function Data(v) {
+                v = v.replace(/\D/g, "");
+                v = v.replace(/(\d{2})(\d)/, "$1/$2");
+                v = v.replace(/(\d{2})(\d)/, "$1/$2");
+                return v;
+            }
+
+            /*Funcao que padroniza DATA*/
+            function Hora(v) {
+                v = v.replace(/\D/g, "");
+                v = v.replace(/(\d{2})(\d)/, "$1:$2");
+                return v;
+            }
+
+            /*Funcao que padroniza valor monetario*/
+            function Valor(v) {
+                v = v.replace(/\D/g, ""); //Remove tudo o que nao e digito
+                v = v.replace(/^([0-9]{3}\.?){3}-[0-9]{2}$/, "$1.$2");
+                //v=v.replace(/(\d{3})(\d)/g,"$1,$2")
+                v = v.replace(/(\d)(\d{2})$/, "$1.$2"); //Coloca ponto antes dos 2 ultimos digitos
+                return v;
+            }
+
+            /*Funcao que padroniza Area*/
+            function Area(v) {
+                v = v.replace(/\D/g, "");
+                v = v.replace(/(\d)(\d{2})$/, "$1.$2");
+                return v;
+            }
+
+            var ehPlacaValida = function (placa)
+            {
+                var er = /[a-z]{3}-?\d{4}/gim;
+                er.lastIndex = 0;
+                return er.test(placa);
+            }
+        </script>
+
+    </h:head>
+    <h:body>
+        <ui:decorate template="/template/layout.xhtml">
+            <ui:define name="content">
+                <h:form id="formTabela">
+
+                    <p:growl id="mensagem" />
+
+                    <div class="wrapper wrapper--w680">
+                        <div class="card card-5">
+                            <div class="card-heading">
+                                <h2 class="title">Cadastro de Usuário</h2>
+                            </div>
+                            <div class="divider"></div> 
+                            <div class="card-body">
+
+                                <h:form  enctype="multipart/form-data">    
+                                    <div class="input-field s12">
+                                        <i class="material-icons prefix" aria-hidden="true">portrait</i>
+                                        <h:inputText style="width: 80%" required="true" requiredMessage="Por favor, preencha o campo 'NOME COMPLETO'" id="nome" class="input100" value="#{usuarioControle.usuario.nomeUsuario}">
+                                        </h:inputText>
+                                        <label for="nome">Nome Completo</label>
+                                    </div>
+                                    <div class="input-field s12">
+                                        <i class="material-icons prefix" aria-hidden="true">call</i>
+                                        <h:inputText onkeydown="Mascara(this, Telefone);"
+                                                     onkeyup="Mascara(this, Telefone);" 
+                                                     onkeypress="Mascara(this, Telefone);" style="width: 80%" maxlength="15" class="input100" value="#{usuarioControle.usuario.telefone}"/>
+                                        <label>Telefone</label>
+                                    </div>
+                                    <div class="input-field s12">
+                                        <i class="material-icons prefix" aria-hidden="true">assignment_ind</i>
+                                        <h:inputText style="width: 80%" class="input100" maxlength="11" value="#{usuarioControle.usuario.cpf}"/>
+                                        <label>CPF</label>
+                                        <span class="helper-text" data-error="wrong" data-success="right">Apenas números</span>
+                                    </div>
+                                    <div class="input-field s12">
+                                        <i class="material-icons prefix" aria-hidden="true">email</i>
+                                        <h:inputText validatorMessage="E-mail inválido" style="width: 80%" requiredMessage="Por favor, preencha o campo 'E-MAIL'" class="materialize-textarea" value="#{usuarioControle.usuario.email}">
+                                            <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                                        </h:inputText>
+                                        <label>E-mail</label>
+                                    </div> 
+                                    <div class="input-field s12">
+                                        <i class="material-icons prefix" aria-hidden="true">lock</i>
+                                        <h:inputSecret style="width: 80%" requiredMessage="Por favor, preencha o campo 'SENHA'" class="materialize-textarea" value="#{usuarioControle.usuario.senha}">
+                                            <f:validateLength minimum="6" ></f:validateLength>
+                                        </h:inputSecret>
+                                        <label>Senha</label>
+                                        <span class="helper-text" data-error="wrong" data-success="right">6 caracteres no mínimo</span>
+                                    </div>
+                                    <br/>
+                                    <div class="divider"></div>    
+                                    <h4 class="center">Localização</h4>
+                                    <br/>
+                                    <div class="input-field s8">
+                                        <i class="material-icons prefix" aria-hidden="true">map</i>
+                                        <h:inputText onkeydown="Mascara(this, Cep);"
+                                                     onkeyup="Mascara(this, Cep);" 
+                                                     onkeypress="Mascara(this, Cep);" id="cep" style="width: 50%" maxlength="9" class="input100" value="#{usuarioControle.usuario.cep}"/>
+                                        <label>CEP</label>
+                                        <h:commandButton style="width: 20%" class="btn btn--radius-2 btn--blue col s2" value="Buscar" type="submit" action="#{usuarioControle.cepConfirma()}"/>
+                                    </div>
+
+                                    <a style="margin-top: -10px" class="nav-link center-align" href="https://cep.telelistas.net/" target="blank">Não sei meu CEP</a>                         
+                                    <div class="input-field s12">
+                                        <i class="material-icons prefix" aria-hidden="true">language</i>
+                                        <h:inputText style="width: 80%" id="uf" disabled="true" class="input100" value="#{usuarioControle.usuario.estado}">
+                                        </h:inputText>
+                                        <label>Estado</label>
+                                    </div>   
+                                    <div class="input-field s12">
+                                        <i class="material-icons prefix" aria-hidden="true">location_city</i>
+                                        <h:inputText style="width: 80%" id="cidade" disabled="true" class="input100" value="#{usuarioControle.usuario.cidade}">
+                                        </h:inputText>
+                                        <label>Cidade</label>
+                                    </div> 
+                                    <div class="input-field s12">
+                                        <i class="material-icons prefix" aria-hidden="true">location_searching</i>
+                                        <h:inputText style="width: 80%" id="bairro" class="input100" value="#{usuarioControle.usuario.bairro}">
+                                        </h:inputText>
+                                        <label>Bairro</label>
+                                    </div> 
+                                    <div class="input-field s12">
+                                        <i class="material-icons prefix" aria-hidden="true">location_on</i>
+                                        <h:inputText style="width: 80%" id="rua" class="input100" value="#{usuarioControle.usuario.endereco}">
+                                        </h:inputText>
+                                        <label>Endereço</label>
+                                    </div> 
+                                    <div class="input-field s12">
+                                        <i class="material-icons prefix" aria-hidden="true">looks_5</i>
+                                        <h:inputText style="width: 80%" class="input100" value="#{usuarioControle.usuario.numeroResidencia}">
+                                        </h:inputText>
+                                        <label>Numero da Residência</label>
+                                    </div> 
+                                    <div class="input-field s12">
+                                        <i class="material-icons prefix" aria-hidden="true">home</i>
+                                        <h:inputText style="width: 80%" class="input100" value="#{usuarioControle.usuario.complemento}">
+                                        </h:inputText>
+                                        <label>Complemento</label>
+                                    </div> 
+                                    <br/>
+                                    <p>
+                                        <label>
+                                            <input type="checkbox" />
+                                            <span>Li e aceito os <a href="https://cep.telelistas.net/" target="blank">termos de contrato.</a></span>
+                                        </label>
+                                    </p>
+                                    <br/>
+                                    <br/>
+                                    <div>
+                                        <h:commandButton style="width: 50%" class="btn btn--radius-2 btn--blue" value="Salvar" type="submit" action="#{usuarioControle.salvar()}"/>
+                                    </div>
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+                </h:form>
+            </ui:define>
+        </ui:decorate>
+    </h:body>
+
+</html>
+

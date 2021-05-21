@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+        <h:head>
+            <title>Manutenção de Aluguéis</title>
+            <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+        </h:head>
+    
+        <h:body>          
+            <h:form id="formTabela">
+                <p:menuButton value="Administrar">               
+                    <p:menuitem value="Usuarios" action="manutencaoUsuarios"/>
+                    <p:menuitem value="Categorias de Preço" action="manutencaoTipoPrecos"/>
+                    <p:menuitem value="Mensagens" action="manutencaoMensagens"/>
+                    <p:menuitem value="Categorias" action="manutencaoCategorias"/>
+                    <p:menuitem value="Aluguel" action="manutencaoAluguel"/>
+                    <p:menuitem value="Itens" action="manutencaoItens"/>
+                </p:menuButton> 
+                <p:button style="margin-left: 1200px" value="ADM" href="administrador.xhtml"/> 
+                <p:button icon="ui-icon-extlink" href="login.xhtml"/>  
+                            <br>  </br>
+                <p:commandButton value="Atualizar" actionListener="#{locacaoControle.atualizaLista()}" update="tabela"/>
+                <p:commandButton icon="ui-icon-plus" action="#{locacaoControle.preparaIncluir()}"/>
+                            
+                <p:dataTable id="tabela"
+                             value="#{locacaoControle.lista}"
+                             var="al">
+                    <p:column headerText="Item">
+                        <h:outputLabel value="#{al.objeto.nome} "/>
+                    </p:column>
+                    <p:column headerText="Locatário">
+                        <h:outputLabel value="#{al.objeto.usuario.nomeUsuario}"/>
+                        </p:column>
+                    <p:column headerText="Data Inicial">
+                        <h:outputLabel value="#{al.dataInicial}"/>
+                    </p:column>
+                    <p:column headerText="Data Final">
+                        <h:outputLabel value="#{al.dataFinal} "/>
+                    </p:column>
+                    <p:column width="150" headerText="Opções">
+                        <p:commandButton style="margin-left: 15px" icon="ui-icon-trash" oncomplete="PF('excluir').show()">
+                            <f:setPropertyActionListener target="#{locacaoControle.locacao}"
+                                                         value="#{al}"/>
+                        </p:commandButton>
+                        <p:commandButton style="margin-left: 22px" icon="ui-icon-pencil" action="#{locacaoControle.preparaAlterar()}">
+                            <f:setPropertyActionListener target="#{locacaoControle.locacao}" value="#{al}"/>
+                        </p:commandButton>        
+                    </p:column>    
+                </p:dataTable>
+                <p:commandButton icon="ui-icon-plus" action="#{locacaoControle.preparaIncluir()}"/>
+            </h:form>
+            <p:confirmDialog id="confirmaExclusao" message="Realmente deseja excluir?"
+                                             header="Confirma exclusão?" severity="alert" widgetVar="excluir">
+                <h:form id="formPainelExcluir" enctype="multipart/form=data">
+                    <p:commandButton value="Sim" oncomplete="PF('excluir').hide()"
+                                                 update=":formTabela"
+                                                 actionListener="#{locacaoControle.excluir()}"/>
+                    <p:commandButton value="Não" oncomplete="PF('excluir').hide()"/>
+                </h:form>
+            </p:confirmDialog>
+        </h:body>
+
+</html>
+

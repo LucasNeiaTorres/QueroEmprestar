@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Manutenção de Usuários</title>
+        <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+    </h:head>
+
+    <h:body>
+        <ui:decorate template="/template/layout.xhtml">
+            <ui:define name="content">
+                <h:form id="formTabela">
+                    <p:button style="margin-left: 1200px" value="ADM" href="administrador.xhtml"/> 
+                    <br/>
+                    <p:commandButton style="left: 25%" value = "Atualizar" actionListener="#{usuarioControle.atualizaLista()}" update="tabela"/>
+                    <p:commandButton style="left: 25%" icon="ui-icon-plus" action="#{usuarioControle.preparaIncluir()}"/>
+                    <p:dataTable id="tabela"
+                                 value="#{usuarioControle.lista}" style="width: 50%" class="center-block"
+                                 var="est">
+                        <p:column headerText="Nome">
+                            <h:outputLabel value="#{est.nomeUsuario}"/>
+                        </p:column>
+                        <p:column headerText="Opções" width = "150" >
+                            <p:commandButton style="margin-left: 15px" icon="ui-icon-trash" oncomplete="PF('excluir').show()">
+                                <f:setPropertyActionListener target="#{usuarioControle.usuario}"
+                                                             value="#{est}"/>
+                            </p:commandButton>
+                            <p:commandButton style="margin-left: 22px" icon="ui-icon-pencil" action="#{usuarioControle.preparaAlterar()}">
+                                <f:setPropertyActionListener target="#{usuarioControle.usuario}" value="#{est}"/>
+                            </p:commandButton> 
+
+                        </p:column>    
+                    </p:dataTable>
+                    <p:commandButton icon="ui-icon-plus" action="#{usuarioControle.preparaIncluir()}" style="left: 25%"/>
+                    <br/><br/><br/>
+                </h:form>
+            </ui:define>
+        </ui:decorate>
+        <p:confirmDialog id="confirmaExclusao" message="Realmente deseja excluir?"
+                         header="Confirma exclusão?" severity="alert" widgetVar="excluir">
+            <h:form id="formPainelExcluir" enctype="multipart/form=data">
+                <p:commandButton value="Sim" oncomplete="PF('excluir').hide()"
+                                 update=":formTabela"
+                                 actionListener="#{usuarioControle.excluir()}"/>
+                <p:commandButton value="Não" oncomplete="PF('excluir').hide()"/>
+            </h:form>
+        </p:confirmDialog>
+    </h:body>
+
+</html>
