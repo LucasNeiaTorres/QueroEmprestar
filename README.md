@@ -1,2 +1,2 @@
 # QueroEmprestar
- Trabalho de conclusão de curso desenvolvido por mim, no Instituto Federal do Paraná - Campus Jacarezinho
+ Trabalho de conclusão de curso desenvolvido por mim, no Instituto Federal do Paraná - Campus Jacarezinho, utilizando Java Web + MySQL
