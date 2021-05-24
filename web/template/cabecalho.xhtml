@@ -145,35 +145,36 @@
             <li><h:commandLink value="Sair" action="#{usuarioControle.doLogout()}"><i class="material-icons left">directions_run</i></h:commandLink></li>
         </ul>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
-        <script type="text/javascript">
+        <script type="text/javascript">// <![CDATA[
             $(document).scroll(function () {
                 var y = $(this).scrollTop();
-                if (y > 56) {
-                    $('.navbar-fixed')
-                            .css({
-                                'transform': 'translateY(-53px)',
-                                'transition': 'transform 0.5s',
-                                'opacity': '0.97'
-                            });
-                    $('.brand-logo')
-                            .css({
-                                'transform': 'translateY(55px)',
+                        if (y > 56 && screen.width > 1084) {
+                $('.navbar-fixed')
+                        .css({
+                            'transform': 'translateY(-53px)',
+                            'transition': 'transform 0.5s',
+                            'opacity': '0.97'
+                        });
+                $('.brand-logo')
+                        .css({
+                        'transform': 'translateY(55px)',
                                 'width': '20%'
-                            });
-                } else if (y == 0) {
-                    $('.roll')
-                            .css({
-                                'transform': 'translateY(0px)',
-                                'opacity': '1'
-                            });
-                    $('.brand-logo')
-                            .css({
-                                'transform': 'translateY(0px)',
+                        });
+                }
+                else if (y == 0 && screen.width > 1084) {
+                $('.roll')
+                        .css({
+                            'transform': 'translateY(0px)',
+                            'opacity': '1'
+                        });
+                $('.brand-logo')
+                        .css({
+                        'transform': 'translateY(0px)',
                                 'width': '38%'
-                            });
+                        });
                 }
             });
-        </script>
+            // ]]></script>
     </h:form>
 </body>
 </html>
