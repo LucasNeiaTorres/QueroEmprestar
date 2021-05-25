@@ -74,20 +74,86 @@
     color: #EB9009;
     margin-top: -10px;
 }
-.itemFixo{
-    position: fixed;
-    right: 15%;
-    width: 250px;
-    height: 410px;
-    border-style: solid;
-    border-color: #e0e0e0;
-    border-width: 1px;
-    border-radius: 14px;
-    background-color: white;
-    z-index: 0;
+.preco{
+    display: none;
 }
+
+.botaoFixo {
+    width: 150px;
+    margin-left: 25%
+}
+
 .itemFixo > p{
     margin-left: 5%;
     margin-top: -6px;
     font-size: 14px;
+}
+
+.itemFixo .contato{
+    margin-left: 5%;
+    margin-top: -6px;
+    font-size: 14px;
+}
+
+@media only screen and (min-width: 1094px) {
+    .itemFixo {
+        position: fixed;
+        right: 15%;
+        width: 250px;
+        height: 410px;
+        border-style: solid;
+        border-color: #e0e0e0;
+        border-width: 1px;
+        border-radius: 14px;
+        background-color: white;
+        z-index: 1;
+    }
+}
+
+@media only screen and (max-width: 1094px) {
+    .itemFixo {
+        position: fixed;
+        top: 90%;
+        left: 0%;
+        width: 102%;
+        height: 150px;
+        background-color: white;
+        z-index: 1;
+        box-shadow: 5px 10px 30px #888888;
+    }
+    .itemFixo .botaoFixo {
+        margin-left: 70%;
+        width: 140px;
+        z-index: 1;
+        margin-top: -337px;
+    }
+    .itemFixo .preco {
+        display: inherit;
+        margin-top: -50px;
+        margin-left: 40%;
+    }
+    .itemFixo .btn {
+        height: 50px;
+    }
+    .itemFixo .btn > p {
+        margin-top: 7px;
+        font-size: large;
+        font-weight: 600;
+    }
+}
+
+@media only screen and (max-width: 580px) {
+    .itemFixo .preco {
+        margin-left: 5%;
+        margin-top: -35px;
+    }
+    .contato {
+        display: none;
+    }
+    .itemFixo .divider {
+        margin-top: 40px;
+    }
+    .itemFixo .botaoFixo {
+        margin-left: 63%;
+    }
 }
