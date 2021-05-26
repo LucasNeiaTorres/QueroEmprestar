@@ -47,7 +47,7 @@
                                     </h:commandLink>
                                 </div>
                                 <div class="preco">
-                                    <h5>R$ #{objetoControle.objeto.preco} #{objetoControle.objeto.tipoPreco.descricaoTipoPreco}</h5>
+                                    <h5 style="font-weight: lighter">R$ #{objetoControle.objeto.preco} #{objetoControle.objeto.tipoPreco.descricaoTipoPreco}</h5>
                                 </div>
                                 <br/>
                                 <br/>
@@ -76,7 +76,7 @@
                             <!-- Fotos -->
                             <div class="grid-container" style="width: 646px">
                                 <div class="grid-item">
-                                    <div class="slider" style="width: 425px">
+                                    <div class="slider">
                                         <ul class="slides materialboxed">
                                             <li>
                                                 <img src="#{objetoControle.objeto.imagem}"  style="object-fit: fill"/> 
@@ -135,7 +135,7 @@
                                                var="obj">
                                         <p>Locações finalizadas: #{obj.objeto.total}</p>        
                                     </ui:repeat>
-                                    <h5 style="margin-top: 100px" class="text-left">R$ #{objetoControle.objeto.preco} #{objetoControle.objeto.tipoPreco.descricaoTipoPreco}</h5>
+                                    <h4 style="margin-top: 100px; font-weight: lighter" class="text-left">R$ #{objetoControle.objeto.preco} #{objetoControle.objeto.tipoPreco.descricaoTipoPreco}</h4>
                                 </div>
                                 <!-- Fechamento coluna 2 linha 1 -->
                                 <div class="grid-descricao">
