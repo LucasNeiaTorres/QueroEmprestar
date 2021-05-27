@@ -44,7 +44,6 @@
 .grid-item{
 }
 .grid-item > h4{
-    margin-top: 13px;
     font-size: 130%;
 }
 .grid-descricao{
@@ -76,6 +75,9 @@
 }
 .preco{
     display: none;
+}
+.prec2{
+    margin-top: 70px;
 }
 
 .botaoFixo {
@@ -160,14 +162,59 @@
 
 @media only screen and (max-width: 680px) {
     .slider{
-        margin-left: -40px;
-        max-width: 660px;
+        margin-left: 860px;
+        margin-top: 200px;
+        max-width: 580px;
+        width: auto;
+    }
+    .grid-item{
+     margin-left: -900px;
+     position: absolute;
+    }
+    .grid-descricao{
+     margin-top: 650px;
+    }
+    .det{
+     margin-top: 350px;
+    }
+    .prec2{
+     margin-top: 30px;
     }
 }
-@media only screen and (max-width: 450px) {
-    .slider img{
-        margin-left: -20px;
-        min-width: 90%;
-        max-width: 100%;
+@media only screen and (max-width: 600px) {
+        .slider{
+        max-width: 500px;
+        width: 80%;
+    }
+}
+@media only screen and (max-width: 530px) {
+        .slider{
+            max-width: 450px; 
+    }
+}
+@media only screen and (max-width: 480px) {
+        .slider{
+            max-width: 400px; 
+    }
+}
+@media only screen and (max-width: 430px) {
+        .slider{
+            max-width: 370px; 
+    }
+}
+@media only screen and (max-width: 400px) {
+        .slider{
+            max-width: 340px; 
+            height: 370px;
+    }
+}
+@media only screen and (max-width: 375px) {
+        .slider{
+            max-width: 310px; 
+    }
+}
+@media only screen and (max-width: 345px) {
+        .slider{
+            max-width: 280px; 
     }
 }

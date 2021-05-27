@@ -125,7 +125,7 @@
                                 </div>
                                 <!-- Coluna 2 linha 1 -->
                                 <div class="grid-item" style="margin-left: 4%">
-                                    <h4>#{objetoControle.objeto.nome}</h4>
+                                    <h4 style="margin-top: 13px">#{objetoControle.objeto.nome}</h4>
                                     <p:outputLabel class="grey-text text-darken-4 center-align" style="font-size: smaller" value="#{objetoControle.objeto.msg}" > 
                                         <img class="right" src="images/estrelinha.png" style="width: 12px; margin-left: 5px; margin-top: 1px"/></p:outputLabel>   
                                     <br/>
@@ -135,7 +135,7 @@
                                                var="obj">
                                         <p>Locações finalizadas: #{obj.objeto.total}</p>        
                                     </ui:repeat>
-                                    <h4 style="margin-top: 100px; font-weight: lighter" class="text-left">R$ #{objetoControle.objeto.preco} #{objetoControle.objeto.tipoPreco.descricaoTipoPreco}</h4>
+                                    <h4 style="font-weight: lighter" class="text-left prec2">R$ #{objetoControle.objeto.preco} #{objetoControle.objeto.tipoPreco.descricaoTipoPreco}</h4>
                                 </div>
                                 <!-- Fechamento coluna 2 linha 1 -->
                                 <div class="grid-descricao">
@@ -147,7 +147,7 @@
                                     <div class="dividerWrap"></div>
                                 </div>
                                 <!-- Detalhes do produto -->
-                                <h4 class="center-align" style="grid-column: 1 / span 2">Detalhes</h4>
+                                <h4 class="center-align det" style="grid-column: 1 / span 2">Detalhes</h4>
                                 <div class="grid-detalhes" >
                                     <div class="grid-item-detalhe">
                                         <p class="titulo-detalhe">Categoria</p>
