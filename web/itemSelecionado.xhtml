@@ -83,14 +83,14 @@
 
                                             </li>
                                             <li>
-                                                <img src="#{objetoControle.objeto.imagem}" style="width: auto"/> 
+                                                <img src="#{objetoControle.objeto.imagem}" style="object-fit: fill"/> 
 
                                             </li>
                                             <li>
-                                                <img src="#{objetoControle.objeto.imagem}"/>
+                                                <img src="#{objetoControle.objeto.imagem}" style="object-fit: fill"/>
                                             </li>
                                             <li>
-                                                <img src="#{objetoControle.objeto.imagem}" style="width: auto"/> 
+                                                <img src="#{objetoControle.objeto.imagem}" style="object-fit: fill"/> 
                                             </li>
                                         </ul>
                                         <script type="text/javascript" src="js/jquery.min.js"></script>
@@ -147,7 +147,7 @@
                                     <div class="dividerWrap"></div>
                                 </div>
                                 <!-- Detalhes do produto -->
-                                <h4 class="center-align det" style="grid-column: 1 / span 2">Detalhes</h4>
+                                <h4 class="det" style="grid-column: 1 / span 2">Detalhes</h4>
                                 <div class="grid-detalhes" >
                                     <div class="grid-item-detalhe">
                                         <p class="titulo-detalhe">Categoria</p>
@@ -172,12 +172,12 @@
                                 </div>
                                 <div class="dividerWrap" style="grid-column: 1 / span 2; margin-right: 10px"></div>
                                 <div class="section" style="grid-column: 1 / span 2">
-                                    <h4 style="font-size: large" class="center-align">Perguntas e respostas</h4>
+                                    <h4 style="font-size: large" class="perg">Perguntas e respostas</h4>
                                     <br/>
-                                    <div class="center">
+                                    <div class="pergunte">
                                         <h:inputText pt:placeholder="Pergunte" style="width: 55%; border: 1px solid gray; border-radius: 5px; padding-left: 5px; padding-right: 5px; height: 30px; font-size: 14px" value="#{objetoControle.mensagem.descricaoMensagem}">
                                         </h:inputText>
-                                        <h:commandLink style="width: 8%; margin-left: 3%; border-radius: 15px" class="btn btn--radius-2 btn--blue" type="submit" action="#{objetoControle.salvarPergunta()}"><i class="material-icons center-block">send</i></h:commandLink>
+                                        <h:commandLink style="margin-left: 3%; border-radius: 15px" class="btn btn--radius-2 btn--blue" type="submit" action="#{objetoControle.salvarPergunta()}"><i class="material-icons center-block">send</i></h:commandLink>
                                     </div>
                                     <br/>
                                     <br/>
@@ -194,11 +194,10 @@
                                         </tr>
                                     </ui:repeat>
                                 </div> 
-                                <br/>
                                 <div class="dividerWrap" style="grid-column: 1 / span 2; margin-right: 10px"></div>
                                 <div class="section" style="grid-column: 1 / span 2">
-                                    <h5 style="font-size: large" class="center-align ">Opiniões sobre o produto</h5>
-                                    <div class="center">
+                                    <h5 style="font-size: large" class="opinioes">Opiniões sobre o produto</h5>
+                                    <div class="opinioes">
                                         <p:outputLabel class="grey-text text-darken-4 center" style="font-size: medium" value="#{objetoControle.objeto.msg}" > 
                                             <img class="right" src="images/estrelinha.png" style="width: 15px; margin-left: 5px; margin-top: 3px"/></p:outputLabel>   
                                     </div>

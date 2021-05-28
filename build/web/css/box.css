@@ -56,7 +56,6 @@
 }
 .grid-detalhes{
     display: grid;
-    grid-column: 1 / span 2;
     position: relative;
     margin-left: 0px;
     grid-template-columns: 170px 170px 170px;
@@ -97,6 +96,19 @@
     font-size: 14px;
 }
 
+.det{
+    text-align: center;
+}
+.perg{
+    text-align: center;
+}
+.pergunte{
+    text-align: center;
+}
+.opinioes{
+    text-align: center;
+}
+
 @media only screen and (min-width: 1094px) {
     .itemFixo {
         position: fixed;
@@ -115,7 +127,7 @@
 @media only screen and (max-width: 1094px) {
     .itemFixo {
         position: fixed;
-        top: 90%;
+        top: 91%;
         left: 0%;
         width: 102%;
         height: 150px;
@@ -168,53 +180,92 @@
         width: auto;
     }
     .grid-item{
-     margin-left: -900px;
-     position: absolute;
+        margin-left: -900px;
+        position: absolute;
     }
     .grid-descricao{
-     margin-top: 650px;
+        margin-top: 650px;
     }
     .det{
-     margin-top: 350px;
+        margin-top: 350px;
     }
     .prec2{
-     margin-top: 30px;
+        margin-top: 30px;
     }
 }
 @media only screen and (max-width: 600px) {
-        .slider{
+    .slider{
+        margin-left: 900px;
         max-width: 500px;
         width: 80%;
     }
+    .wrap-login100{
+        padding-left: 10px;
+    }
+    .grid-detalhes{
+        grid-template-columns: 140px 140px 140px;
+        grid-gap: 30px;
+    }
+    .grid-descricao > h4{
+        text-align: left;
+    }
+    .det{
+        text-align: left;
+    }
+    .perg{
+        text-align: left;
+    }
+    .pergunte{
+        text-align: left;
+    }
+    .opinioes{
+        text-align: left;
+    }
 }
 @media only screen and (max-width: 530px) {
-        .slider{
-            max-width: 450px; 
+    .slider{
+        max-width: 450px; 
     }
 }
 @media only screen and (max-width: 480px) {
-        .slider{
-            max-width: 400px; 
+    .slider{
+        max-width: 400px; 
+    }
+    .pergunte{
+        max-width: 500px; 
+    }
+}
+@media only screen and (max-width: 440px) {
+    .grid-detalhes{
+        grid-template-columns: auto auto;
     }
 }
 @media only screen and (max-width: 430px) {
-        .slider{
-            max-width: 370px; 
+    .slider{
+        max-width: 370px; 
     }
 }
 @media only screen and (max-width: 400px) {
-        .slider{
-            max-width: 340px; 
-            height: 370px;
+    .slider{
+        max-width: 340px; 
+        height: 370px;
+    }
+    .pergunte{
+        max-width: 400px; 
     }
 }
 @media only screen and (max-width: 375px) {
-        .slider{
-            max-width: 310px; 
+    .slider{
+        max-width: 310px; 
+    }
+}
+@media only screen and (max-width: 360px) {
+    .grid-detalhes{
+        grid-template-columns: 130px 130px;
     }
 }
 @media only screen and (max-width: 345px) {
-        .slider{
-            max-width: 280px; 
+    .slider{
+        max-width: 280px; 
     }
 }
