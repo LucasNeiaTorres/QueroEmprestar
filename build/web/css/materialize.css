@@ -5397,6 +5397,12 @@ small {
     white-space: nowrap;
 }
 
+@media only screen and (max-width: 810px) {
+    .tabs {
+        width: 650px;
+        margin-left: 0px;
+    }
+}
 
 @font-face {
     font-family: Helvetica Neue;
