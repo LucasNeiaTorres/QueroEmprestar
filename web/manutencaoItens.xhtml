@@ -45,8 +45,8 @@
                                                 <f:convertNumber pattern="#0.00"/></p:outputLabel> #{i.tipoPreco.descricaoTipoPreco}</p>
                                             </td>
                                             <td style="width: 15%">
-                                            <h:commandLink style="margin-left: 30%" type="button" class="btnBoot btnBoot-outline-info" action="#{locacaoControle.redirecionarCalendario(i)}"><i class="material-icons">date_range</i></h:commandLink>
-                                            <p:commandLink style="margin-left: 30%; margin-top: 20px" action="#{objetoControle.preparaAlterar()}" type="button" class="btnBoot btnBoot-outline-info"><i class="material-icons">edit</i>
+                                            <h:commandLink type="button" class="botaoItem btnBoot btnBoot-outline-info" action="#{locacaoControle.redirecionarCalendario(i)}"><i class="material-icons">date_range</i></h:commandLink>
+                                            <p:commandLink style="margin-top: 20px" action="#{objetoControle.preparaAlterar()}" type="button" class="botaoItem btnBoot btnBoot-outline-info"><i class="material-icons">edit</i>
                                                 <f:setPropertyActionListener target="#{objetoControle.objeto}" value="#{i}"/>
                                             </p:commandLink>                            
                                             </td>

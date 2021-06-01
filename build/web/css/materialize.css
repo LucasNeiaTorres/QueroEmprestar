@@ -3885,6 +3885,98 @@ table span.badge {
     right: auto;
 }
 
+@media only screen and (max-width: 810px) {
+    .row .col.s12 {
+        width: 700px;
+        margin-left: 0px;
+    }
+}
+@media only screen and (max-width: 710px) {
+    .row .col.s12 {
+        width: 600px;
+        margin-left: 0px;
+    }
+}
+@media only screen and (max-width: 635px) {
+    .row .col.s12 {
+        width: 520px;
+    }
+}
+@media only screen and (max-width: 555px) {
+    .row .col.s12 {
+        width: 470px;
+    }
+}
+@media only screen and (max-width: 510px) {
+    .row .col.s12 {
+        width: 420px;
+    }
+}
+
+.botaoItem{
+    margin-left: 30%;
+}
+
+@media only screen and (max-width: 802px) {
+    .table-fillPedidos{
+        width: 700px;
+        margin-left: -50px;
+    }
+}
+
+@media only screen and (max-width: 680px) {
+    .table-fillPedidos{
+        width: 620px;
+        margin-left: -70px;
+    }
+}
+@media only screen and (max-width: 590px) {
+    .table-fillPedidos{
+        width: 550px;
+        margin-left: -78px;
+    }
+}
+@media only screen and (max-width: 560px) {
+    .table-fillPedidos{
+        width: 520px;
+    }
+}
+@media only screen and (max-width: 520px) {
+    .table-fillPedidos{
+        width: 480px;
+    }
+}
+@media only screen and (max-width: 485px) {
+    .table-fillPedidos{
+        width: 430px;
+    }
+}
+@media only screen and (max-width: 450px) {
+    .table-fillPedidos{
+        width: 400px;
+    }
+}
+@media only screen and (max-width: 420px) {
+    .table-fillPedidos{
+        width: 370px;
+    }
+}
+@media only screen and (max-width: 390px) {
+    .table-fillPedidos{
+        width: 340px;
+    }
+}
+@media only screen and (max-width: 360px) {
+    .table-fillPedidos{
+        width: 310px;
+    }
+}
+@media only screen and (max-width: 335px) {
+    .table-fillPedidos{
+        width: 290px;
+    }
+}
+
 .row .col.offset-s1 {
     margin-left: 8.3333333333%;
 }
@@ -4619,7 +4711,7 @@ nav .nav-wrapper {
 }
 
 @media only screen and (min-width: 993px) {
-  nav-content {
+    nav-content {
         display: h;
     }
 }
@@ -4659,9 +4751,9 @@ nav .brand-logo.center {
     transform: translateY(-50%);
 }
 
- #pesquisa { 
-     width: 30%; 
- }
+#pesquisa { 
+    width: 30%; 
+}
 
 @media (max-width: 500px) {
     #pesquisa { width: 50%; }
@@ -5401,6 +5493,31 @@ small {
     .tabs {
         width: 650px;
         margin-left: 0px;
+    }
+}
+@media only screen and (max-width: 710px) {
+    .tabs {
+        width: 600px;
+    }
+}
+@media only screen and (max-width: 635px) {
+    .tabs {
+        width: 520px;
+    }
+}
+@media only screen and (max-width: 555px) {
+    .tabs {
+        width: 470px;
+    }
+}
+@media only screen and (max-width: 510px) {
+    .tabs {
+        width: 420px;
+    }
+}
+@media only screen and (max-width: 469px) {
+    .tabs {
+        width: 390px;
     }
 }
 

@@ -1,19 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
-        <file>
-            <url>web/itemSelecionado.xhtml</url>
-            <bookmark id="1">
-                <name/>
-                <line>73</line>
-                <key/>
-            </bookmark>
-        </file>
-    </editor-bookmarks>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/lukin/OneDrive/Documentos/MeusProjetos/QueroEmprestar/web/css/box.css</file>
-            <file>file:/C:/Users/lukin/OneDrive/Documentos/MeusProjetos/QueroEmprestar/web/itemSelecionado.xhtml</file>
+            <file>file:/C:/Users/lukin/OneDrive/Documentos/NetBeansProjects/QueroEmprestar/web/meusPedidos.xhtml</file>
+            <file>file:/C:/Users/lukin/OneDrive/Documentos/NetBeansProjects/QueroEmprestar/web/css/materialize.css</file>
+            <file>file:/C:/Users/lukin/OneDrive/Documentos/NetBeansProjects/QueroEmprestar/web/manutencaoItens.xhtml</file>
+            <file>file:/C:/Users/lukin/OneDrive/Documentos/NetBeansProjects/QueroEmprestar/web/itemSelecionado.xhtml</file>
         </group>
     </open-files>
 </project-private>
