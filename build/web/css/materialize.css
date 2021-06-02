@@ -3756,6 +3756,60 @@ table span.badge {
     padding-bottom: 1rem;
 }
 
+@media only screen and (max-width: 900px) {
+    .perguntas {
+        width: 700px;
+    }
+    .opinioes {
+        width: 700px;
+        margin-top: 400px;
+        margin-left: -411px;
+        text-align: left;
+    }
+}
+@media only screen and (max-width: 810px) {
+    .perguntas {
+        width: 600px;
+    }
+    .opinioes {
+        width: 600px;
+    }
+}
+@media only screen and (max-width: 710px) {
+    .perguntas {
+        width: 500px;
+    }
+    .opinioes {
+        width: 500px;
+    }
+}
+@media only screen and (max-width: 610px) {
+    .perguntas {
+        width: 400px;
+    }
+    .opinioes {
+        width: 400px;
+    }
+}
+@media only screen and (max-width: 510px) {
+    .perguntas {
+        width: 300px;
+    }
+    .opinioes {
+        width: 300px;
+    }
+}
+@media only screen and (max-width: 425px) {
+    .perguntas {
+        width: 270px;
+        margin-left: -30px;
+    }
+    .opinioes {
+        width: 270px;
+        margin-left: -441px;
+    }
+}
+
 .section.no-pad {
     padding: 0;
 }
