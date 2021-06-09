@@ -146,7 +146,11 @@ iframe {
     line-height: 1.5;
     color: #666666;
 }
-
+@media only screen and (min-width: 770px) {
+    .p-t-12{
+        margin-top: 250px !important;
+    }
+}
 
 /*//////////////////////////////////////////////////////////////////
 [ login ]*/
@@ -174,16 +178,16 @@ iframe {
 .container-login100-2 {
     width: 960px; 
     min-height: 0vh;
-    
-      display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  flex-wrap: wrap;
+
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    
+
     background: #FFFFFF;
     border-radius: 10px;
     overflow: hidden;
