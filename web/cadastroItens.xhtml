@@ -206,15 +206,13 @@
                                     <label for="titulo">Título do anúncio</label>
                                 </div>
                                 <div id="upload-button">
-                                    <h:inputFile onchange="Refresh();" value="#{objetoControle.image}">
+                                    <h:inputFile id="img" onchange="criarImg(event);" value="#{objetoControle.image}">
                                         <f:passThroughAttribute name="accept" value="image/png"/>
                                         <f:ajax event="change" listener="#{objetoControle.doUpload()}" execute="@form"/>
                                     </h:inputFile>
                                 </div>
-                                <h:panelGroup rendered="#{objetoControle.upladed}" layout="block" style="text-align: center">
-                                    <img src="#{objetoControle.objeto.imagem}" height="200" width="200" style="border:3px solid #DDD;"/>
-                                </h:panelGroup>
                                 <br/>
+                                <img class="center-block" id="miniImg" width="200" height="200"/>
                                 <br/>
                                 <div class="m-b-55">
                                     <div class="row">
@@ -372,5 +370,14 @@
         <!-- Main JS-->
         <script src="js/global.js"></script>
 
+        <script>
+            function criarImg(event) {
+                var miniImg = document.getElementById('miniImg');
+                var url = URL.createObjectURL(event.target.files[0]);
+                
+                miniImg.src = url;
+               document.location.reload();
+            };
+        </script>
     </h:body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>
