@@ -142,7 +142,7 @@ public class ObjetoControle {
             ex.printStackTrace();
         }
     }
-    
+
     public void atualizaListaTotObj() {
         try {
             setTotalLoc(LocaçãoDAO.getListaTotObjt((Objeto) SessionContext.getInstance().getAttribute("objeto")));
