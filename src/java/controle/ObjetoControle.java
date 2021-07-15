@@ -216,7 +216,7 @@ public class ObjetoControle {
             InputStream in = image.getInputStream();
 
             File f = new File("E:/TCC - Lucas Néia/TCC/web/ImagensObjetos/" + image.getSubmittedFileName());
-             /* Use your image path */
+             // Use your image path
        
             f.createNewFile();
             FileOutputStream out = new FileOutputStream(f);
